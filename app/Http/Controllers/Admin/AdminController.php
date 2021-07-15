@@ -14,9 +14,9 @@ use App\Models\Feedback;
 use App\Models\GeneralSetting;
 use App\Models\Language;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 use LicenseBoxAPI;
 use Symfony\Component\Console\Input\Input;
 use Symfony\Component\HttpFoundation\Response;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -47,7 +47,7 @@ class AdminController extends Controller
             'email_id' => 'bail|required|email',
             'password' => 'bail|required',
         ]);
-        if(Auth::attempt(['email_id' => request('email_id'), 'password' => request('password')]))
+        if(Auth::attempt(['email' => request('email_id'), 'password' => request('password')]))
         {
             $user = Auth::user()->load('roles');
             if ($user->roles->contains('title', 'user') == true)

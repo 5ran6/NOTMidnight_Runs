@@ -15,6 +15,8 @@ class CreateGeneralSettingTable extends Migration
     {
         Schema::create('general_setting', function (Blueprint $table) {
             $table->id();
+            $table->string('business_name')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('start_time',100)->nullable();
             $table->string('end_time',100)->nullable();
             $table->boolean('business_availability')->nullable();
@@ -29,6 +31,7 @@ class CreateGeneralSettingTable extends Migration
             $table->string('vendor_distance');
             $table->string('payment_type')->nullable();
             $table->string('items_count')->nullable();
+
             $table->timestamps();
         });
     }
